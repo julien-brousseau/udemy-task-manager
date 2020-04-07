@@ -7,7 +7,7 @@ const auth = async (req, res, next) => {
   try {
     // Get token sent in current request headers, then remove the "Bearer " from the beginning to test it
     const token = req.header("Authorization").replace("Bearer ", "");
-    const decoded = jwt.verify(token, "blopendew")
+    const decoded = jwt.verify(token, process.env.JWT_SALT)
 
     // Find a user with the correct _id and the valid token stored
     const user = await User.findOne({
