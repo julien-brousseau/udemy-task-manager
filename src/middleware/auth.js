@@ -5,7 +5,12 @@ const User = require("../models/user");
 const auth = async (req, res, next) => {
 
   try {
-    // Get token sent in current request headers, then remove the "Bearer " from the beginning to test it
+
+    // Tests shows error (undefined auth)
+    // if (!req.header("Authorization")) throw new Error(req.method);
+
+    // Get token sent in current request headers,
+    //  then remove the "Bearer " from the beginning to test it
     const token = req.header("Authorization").replace("Bearer ", "");
     const decoded = jwt.verify(token, process.env.JWT_SALT)
 
@@ -25,7 +30,7 @@ const auth = async (req, res, next) => {
 
   // Auth error
   } catch (e) {
-    console.log(e)
+    // console.log(e)
     res.status(401).send({ error: "Auth failed" })
   }
 };

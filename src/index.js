@@ -1,23 +1,8 @@
-// Dependancies
-const express = require("express");
+// Fetch the Express application
+const app = require("./app");
 
-// Custom database configuration
-require("./db/mongoose");
-
-// Routers
-const userRouter = require("./routers/user");
-const taskRouter = require("./routers/task");
-
-// Server settings
-const app = express();
+// Set port
 const port = process.env.PORT;
-
-// Automatically convert to JSON
-app.use(express.json());
-
-// Define routers
-app.use(userRouter);
-app.use(taskRouter);
 
 // Launch server
 app.listen(port, () => {

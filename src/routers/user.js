@@ -64,7 +64,7 @@ router.post("/users/login", async (req, res) => {
 
   // Server error
   } catch (e) {
-    console.log(e)
+    // console.log(e)
     res.status(400).send();
   }
 
