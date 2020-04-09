@@ -1,36 +1,17 @@
 // Express testing module
 const request = require("supertest");
 
-// For user testing
-const jwt = require("jsonwebtoken");
-const mongoose = require("mongoose");
-
 // Load the app (doesnt not launch server)
 const app = require("../src/app");
 
 // User model
 const User = require("../src/models/user");
 
-// Temp user
-const testUser1Id = new mongoose.Types.ObjectId();
-const testUser1 = {
-  _id: testUser1Id,
-  name: "Darth Vader",
-  email: "vader@jsdnvisdv.com",
-  password: "q1w2e3r4t5y6",
-  tokens: [{
-    token: jwt.sign({ _id: testUser1Id }, process.env.JWT_SALT)
-  }]
-}
+// Temporary user info
+const { testUser0, testUser1Id, testUser1, setupDatabase } = require("./fixtures/db");
 
-// Set default database testing data
-beforeEach(async () => {
-  // Clear user database
-  await User.deleteMany();
-  // Add a new user
-  await new User(testUser1).save();
-});
-
+// Reset database every time tests are run
+beforeEach(setupDatabase);
 
 // User tests
 
@@ -38,9 +19,9 @@ test("Should signup a new user", async () => {
 
   // Try to sign up test user
   const response = await request(app).post("/users").send({
-    name: "Darth Vader",
-    email: "djoolien@gmail.com",
-    password: "q1w2e3r4t5y6"
+    name: testUser0.name,
+    email: testUser0.email,
+    password: testUser0.password
   }).expect(201)
 
   // Check if the user is saved to the database
@@ -50,8 +31,8 @@ test("Should signup a new user", async () => {
   // Check if the stored user match the test data
   expect(response.body).toMatchObject({
     user: {
-      name: "Darth Vader",
-      email: "djoolien@gmail.com"
+      name: testUser0.name,
+      email: testUser0.email
     }, token: user.tokens[0].token
   });
 
