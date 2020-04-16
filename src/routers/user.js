@@ -181,9 +181,9 @@ router.post("/users/me/avatar", auth, upload.single("avatar"), async (req, res) 
   req.user.avatar = buffer;
   await req.user.save();
   res.send();
-},
-// Error handling
-(error, req, res, next) => {
+
+// Catch errors
+}, (error, req, res, next) => {
   res.status(400).send({ error: error.message });
 });
 
