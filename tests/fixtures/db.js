@@ -7,7 +7,7 @@ const Task = require("../../src/models/task");
 // Temp user to be signed up
 const testUser0 = {
   name: "Darth Vader",
-  email: "vader@jsdnvisdv.com",
+  email: "vader@deathstar.us",
   password: "q1w2e3r4t5y6",
 }
 
@@ -16,7 +16,7 @@ const testUser1Id = new mongoose.Types.ObjectId();
 const testUser1 = {
   _id: testUser1Id,
   name: "Luke Skywalker",
-  email: "luke@jsdnvisdv.com",
+  email: "luke@tatooine.com",
   password: "q1w2e3r4t5y6",
   tokens: [{
     token: jwt.sign({ _id: testUser1Id }, process.env.JWT_SALT)
@@ -28,7 +28,7 @@ const testUser2Id = new mongoose.Types.ObjectId();
 const testUser2 = {
   _id: testUser2Id,
   name: "Han Solo",
-  email: "han@jsdnvisdv.com",
+  email: "han@smugglers.org",
   password: "q1w2e3r4t5y6",
   tokens: [{
     token: jwt.sign({ _id: testUser2Id }, process.env.JWT_SALT)

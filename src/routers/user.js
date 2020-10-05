@@ -40,15 +40,6 @@ router.post("/users", async (req, res) => {
     res.status(400).send();
   }
 
-  // Save process before async
-  // user.save()
-  //   .then(r => {
-  //     res.status(201).send(user);
-  //   })
-  //   .catch(e => {
-  //     res.status(400).send(e);
-  //   });
-
 });
 
 // Login user

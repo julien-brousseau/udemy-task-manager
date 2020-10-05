@@ -1,6 +1,3 @@
-// This data has been moved from the index.js script in order to
-//  bypass the server while testing
-
 // Dependancies
 const express = require("express");
 

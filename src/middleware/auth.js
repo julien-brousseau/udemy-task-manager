@@ -6,9 +6,6 @@ const auth = async (req, res, next) => {
 
   try {
 
-    // Tests shows error (undefined auth)
-    // if (!req.header("Authorization")) throw new Error(req.method);
-
     // Get token sent in current request headers,
     //  then remove the "Bearer " from the beginning to test it
     const token = req.header("Authorization").replace("Bearer ", "");
@@ -35,13 +32,11 @@ const auth = async (req, res, next) => {
   }
 };
 
-// Maintenance mode -- send to another file eventually
+// Maintenance mode
+// TODO: Send to external file
 // app.use((req, res, next) => {
 //   res.status(503).send("Maintenance mode")
 //   console.log("Maintenance Mode")
 // })
 
 module.exports = auth;
-
-// Bearer token, provided for Auth. Send as header to test login tokens
-// Authorization Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTg4Zjc3YjE0ODViMTE2NzA0MWMyNzAiLCJpYXQiOjE1ODYxOTcxODl9.gmnOsD_fQlrf58CgNNHs2Nw9DKffglK70uG3drtkIwA

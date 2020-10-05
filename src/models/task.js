@@ -1,7 +1,5 @@
 // Dependancies
 const mongoose = require("mongoose");
-const validator = require("validator");
-const bcrypt = require("bcryptjs");
 
 // Create the schema
 const taskSchema = new mongoose.Schema({
@@ -24,14 +22,6 @@ const taskSchema = new mongoose.Schema({
 }, {
   timestamps: true
 });
-
-// Middleware
-// taskSchema.pre("save", async function(next) {
-//
-//   const task = this;
-//   // ...
-//   next();
-// })
 
 // Task model schema
 const Task = mongoose.model("Task", taskSchema);
